@@ -8,14 +8,14 @@
     "end": "/end"
   },
   "snake" : {
-    "name": "battlesnake-node",
+    "name": "The-A-Team",
     "color": "#fff000",
     "head_url": "http://battlesnake-node.herokuapp.com/",
     "taunt": {
-      "state": "It's great to be alive!",
-      "move": "Outta my way snake!",
-      "start": "Let's do this thang!",
-      "end": "I've been snaked!"
+      "state": "I love it when a plan comes together!",
+      "move": "I pity da fool!",
+      "start": "I ain't goin' on no airplane!",
+      "end": "Looks like we're going to crash and 'die'"
     }
   }
 }
