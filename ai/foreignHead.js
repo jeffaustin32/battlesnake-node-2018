@@ -12,24 +12,40 @@ module.exports = function(board, cellCoords) {
     var vertex = utils.getBoardCell(board, cellCoords);
 
     // Check if it is our snake
-    if(vertex.snake === "you" ){
+    if(vertex.snake.you.id === req.body.you.id ){
     	// We are only concerned with foreign snakes here
     	return vertex;
     }
 
-    // Get this snakes current connected coords from Jeff and increase them
-    headNodes = 
-
-    
     // If we are bigger, decrease them substantially
     // Get this snakes current size
-    enemySnakeSize = vertex.snake.coords.length;
+    var enemySnakeSize = vertex.snake.coords.length;
     // Our snake
-    ourSnake = req.body.you.coords.lenght;
+    var ourSnakeSize = req.body.you.coords.length;
+    // Marker to see if we are predatory - timid by default
+    var predatory = false;
+    if(ourSnakeSize > enemySnakeSize){
+    	predatory = true;
+    } 
 
-    
+    // Grab our surrounding nodes (possible max 3, can't go back on our own body)
+    var headPath = //function to get surroundings nodes on vertex.coord
 
+    // Now we can add weight to inner and then secondary nodes.
+    headPath.foreach{
+    	//Then get all other attaching nodes.
+    	secondaryNodes = // Jeffs forthcoming function
+    	foreach(secondaryNodes as sNode){
+    		// Weigh these edges from each node
+    		// We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.
+    		if(predatory){
+    			// Get aggresive son!
+    			// We need to pull this from edges array if they are there to manipulate them - or else add with new values
 
-
+    		} else {
+    			// Run away! Run away!
+    		}
+    	}
+   	}
     return vertex;
 }
