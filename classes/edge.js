@@ -12,11 +12,11 @@ var Point = require('./point');
 
 module.exports = Edge;
 
-function Edge(direction = 'north', source = null, destination = null) {
-    this.direction = direction;
+function Edge(direction, source, destination) {
+    this.direction = direction || 'north';
     this.weight = 100;
-    this.source = source;
-    this.destination = destination;
+    this.source = source || null;
+    this.destination = destination || null;
 }
 
 Edge.prototype.getSource = function(board) {

@@ -18,14 +18,14 @@ var Point = require('./point');
 
 module.exports = Vertex;
 
-function Vertex(state = 'empty', snake = '', coords = null) {
-    this.state = state;
-    this.snake = snake
+function Vertex(state, snake, coords) {
+    this.state = state || 'empty';
+    this.snake = snake || '';
     this.distance = Infinity; // Fundamental to Dijkstra's. The weight of the shortest path (in terms of distance, not moves)
     this.visited = false; // Allows us to eliminate vertices pulled from priority queue instead of linear time to remove
     this.outEdges = [];
     this.parent = null; // When we have lightest food, work backwards through parent to find path
-    this.coords = coords; // Store the coordinates so we can later check if vertex is visited in constant time
+    this.coords = coords || null; // Store the coordinates so we can later check if vertex is visited in constant time
     this.isSource = false;
 
     // This is the head of our snake
