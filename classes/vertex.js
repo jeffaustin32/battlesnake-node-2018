@@ -47,7 +47,8 @@ Vertex.prototype.compareTo = function (otherVertex) {
     otherVertex.distance - this.distance;
 };
 
-Vertex.prototype.containsSnake = function (board, coords, allowOwnHead = false) {
+Vertex.prototype.containsSnake = function (board, coords, allowOwnHead) {
+    allowOwnHead = allowOwnHead || false;
     // Get the cell in question
     var cell = boardUtils.getBoardCell(board, coords);
 
