@@ -49,7 +49,6 @@ module.exports = function (req, res, next) {
     }
   });
 
-
   // Store the direction of the first move  
   next();
 }

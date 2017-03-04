@@ -10,6 +10,9 @@
   "snake" : {
     "name": "Mr-Hankey",
     "color": "#683404",
+    "secondary_color": "#063917",
+    "head_type": "bendr",
+    "tail_type": "curled",
     "head_url": "http://sheltered-shelf-79876.herokuapp.com",
     "taunt": {
       "state": "You eat pieces of shit for breakfast!?",
