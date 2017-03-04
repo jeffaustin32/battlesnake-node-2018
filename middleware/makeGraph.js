@@ -108,6 +108,8 @@ module.exports = function (methods) {
       });
     });
 
+    console.log(req.body.board[0][0]);
+
     next();
   };
 }
