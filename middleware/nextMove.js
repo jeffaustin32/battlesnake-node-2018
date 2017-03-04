@@ -35,11 +35,18 @@ module.exports = function (req, res, next) {
   // Get the food with the lowest distance, it is the end of our path
   var path = boardUtils.getBoardCell(req.body.board, foods[0].parent);
 
+  while (path.parent != null) {
+    path = boardUtils.getBoardCell(req.body.board, path.parent);
+    if (path.parent && path.parent.parent === null) {
+      break;
+    }
+  }
+
   // Continue working up the path until the grandparent is null
   // When it is null, it means we are on the first node in the path
-  while (boardUtils.getBoardCell(req.body.board, path.parent).parent != null) {
-    path = boardUtils.getBoardCell(req.body.board, path.parent);
-  }
+  // while (boardUtils.getBoardCell(req.body.board, path.parent).parent != null) {
+  //   path = boardUtils.getBoardCell(req.body.board, path.parent);
+  // }
 
   // Now find the edge from the source that connects to this vertex
   req.body.source.outEdges.forEach(edge => {

@@ -56,7 +56,7 @@ router.use(middleware.nextMove);
 router.post(config.routes.move, function (req, res) {
   // Response data
   var data = {
-    move: req.move, // one of: ["north", "east", "south", "west"]
+    move: req.move, 
     taunt: config.snake.taunt.move
   };
 
