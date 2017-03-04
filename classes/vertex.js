@@ -49,7 +49,7 @@ Vertex.prototype.compareTo = function (otherVertex) {
 
 Vertex.prototype.containsSnake = function (board, coords, allowOwnHead = false) {
     // Get the cell in question
-    let cell = boardUtils.getBoardCell(board, coords);
+    var cell = boardUtils.getBoardCell(board, coords);
 
     // Cell contains the head or body of a snake
     if (/head|body/.test(cell.state)) {

@@ -47,7 +47,7 @@ router.post(config.routes.end, function (req, res) {
 
 // Create a graph from the board array
 router.use(middleware.makeGraph(edgeWeightAdjustments));
-// Dijkstra's Algorithm (Single sourece shortest path)
+// Dijkstra's Algorithm (Single source shortest path)
 router.use(middleware.dijkstra);
 // Decide next move 
 router.use(middleware.nextMove);

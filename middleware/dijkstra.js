@@ -27,9 +27,9 @@ module.exports = function (req, res, next) {
     // For every out edge from this vertex
     vertex.outEdges.forEach(edge => {
       // Get the adjacent vertex
-      let adjacentVertex = edge.getDestination(req.body.board);
+      var adjacentVertex = edge.getDestination(req.body.board);
       // Calculate the new potential distance to this vertex
-      let newDistance = vertex.distance + edge.weight;
+      var newDistance = vertex.distance + edge.weight;
 
       // If the new distance is less than the old, use the new path to the vertex
       if (newDistance < adjacentVertex.distance) {

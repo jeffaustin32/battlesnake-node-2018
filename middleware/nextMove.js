@@ -20,7 +20,7 @@ module.exports = function (req, res, next) {
   }
 
   // There is food, find the food with the lowest distance
-  let foods = [];
+  var foods = [];
 
   // Add all the vertices with food to the foodQueue
   req.body.food.map(food => { return new Point(food[0], food[1]) })
@@ -32,7 +32,7 @@ module.exports = function (req, res, next) {
   });
 
   // Get the food with the lowest distance, it is the end of our path
-  let path = boardUtils.getBoardCell(req.body.board, foods[0].parent);
+  var path = boardUtils.getBoardCell(req.body.board, foods[0].parent);
 
   // Continue working up the path until the grandparent is null
   // When it is null, it means we are on the first node in the path
@@ -42,7 +42,7 @@ module.exports = function (req, res, next) {
 
   // Now find the edge from the source that connects to this vertex
   req.body.source.outEdges.forEach(edge => {
-    let destination = boardUtils.getBoardCell(req.body.board, edge.destination);
+    var destination = boardUtils.getBoardCell(req.body.board, edge.destination);
     if (edge.destination.equals(path.coords)) {
       // Path now contains the first vertex of the path, which is our next move
       req.move = edge.direction;

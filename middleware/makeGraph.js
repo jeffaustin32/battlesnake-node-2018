@@ -24,14 +24,14 @@ module.exports = function (methods) {
     });
 
     // Go through all the board cells
-    for (let col = 0; col < req.body.width; col++) {
-      for (let row = 0; row < req.body.height; row++) {
+    for (var col = 0; col < req.body.width; col++) {
+      for (var row = 0; row < req.body.height; row++) {
         // Get the current board cell
-        let cell = req.body.board[col][row];
-        let cellCoords = new Point(col, row);
+        var cell = req.body.board[col][row];
+        var cellCoords = new Point(col, row);
         
         // Create a new vertex representing that cell
-        let vertex = new Vertex(cell.state, cell.snake, cellCoords);
+        var vertex = new Vertex(cell.state, cell.snake, cellCoords);
 
         // This is the source node, keep track of it for when we choose our next move
         if (vertex.isSource) {

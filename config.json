@@ -10,7 +10,7 @@
   "snake" : {
     "name": "The-A-Team",
     "color": "#fff000",
-    "head_url": "http://battlesnake-node.herokuapp.com/",
+    "head_url": "http://sheltered-shelf-79876.herokuapp.com",
     "taunt": {
       "state": "I love it when a plan comes together!",
       "move": "I pity da fool!",
