@@ -25,11 +25,15 @@ router.get(config.routes.info, function (req, res) {
 
 // Handle POST request to '/start'
 router.post(config.routes.start, function (req, res) {
-  // Do something here to start the game
-
   // Response data
   var data = {
-    taunt: config.snake.taunt.start
+    taunt: config.snake.taunt.start,
+    color: config.snake.color,
+    secondary_color: config.snake.secondary_color,
+    head_url: config.snake.head_url,
+    name: config.snake.name,
+    head_type: config.snake.head_type,
+    tail_type: config.snake.tail_type
   };
 
   return res.json(data);
@@ -59,6 +63,8 @@ router.post(config.routes.move, function (req, res) {
     move: req.move, 
     taunt: config.snake.taunt.move
   };
+
+  console.log(req.move);
 
   return res.json(data);
 });
