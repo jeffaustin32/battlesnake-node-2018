@@ -8,14 +8,14 @@
     "end": "/end"
   },
   "snake" : {
-    "name": "The-A-Team",
-    "color": "#fff000",
+    "name": "Mr-Hankey",
+    "color": "#683404",
     "head_url": "http://sheltered-shelf-79876.herokuapp.com",
     "taunt": {
-      "state": "I love it when a plan comes together!",
-      "move": "I pity da fool!",
-      "start": "I ain't goin' on no airplane!",
-      "end": "Looks like we're going to crash and 'die'"
+      "state": "You eat pieces of shit for breakfast!?",
+      "move": "Toot toot",
+      "start": "Hideho!",
+      "end": "Golly that isn't very nice. I sure would like to teach him lesson."
     }
   }
 }
