@@ -1,7 +1,7 @@
 /*
 *   Vertex {
 *        state:     'head'|'body'|'food'|'empty'
-*        snake:     optional string
+*        snake:     'you'|'enemy'
 *        distance:  Infinity | 0,
 *        visited:   false
 *        outEdges:  [Edges]
@@ -20,7 +20,7 @@ module.exports = Vertex;
 
 function Vertex(state, snake, coords) {
     this.state = state || 'empty';
-    this.snake = snake || '';
+    this.snake = snake || 'enemy';
     this.distance = Infinity; // Fundamental to Dijkstra's. The weight of the shortest path (in terms of distance, not moves)
     this.visited = false; // Allows us to eliminate vertices pulled from priority queue instead of linear time to remove
     this.outEdges = [];

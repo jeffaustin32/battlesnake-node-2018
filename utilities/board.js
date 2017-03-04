@@ -34,5 +34,44 @@ module.exports = {
         }
 
         return true;
+    },
+    // Get all adjacent vertices, regardless of connecting edges
+    getAdjacentVertices: function (board, coords) {
+        var vertex = this.getBoardCell(board, coords);
+        var adjacentVertices = [];
+
+        // Get north adjacent vertex
+        if (this.getBoardCell(board, new Point(coords.x, coords.y - 1))) {
+            adjacentVertices.push(this.getBoardCell(board, new Point(coords.x, coords.y - 1)));
+        }
+        
+        // Get east adjacent vertex
+        if (this.getBoardCell(board, new Point(coords.x + 1, coords.y))) {
+            adjacentVertices.push(this.getBoardCell(board, new Point(coords.x + 1, coords.y)));
+        }
+        
+        // Get south adjacent vertex
+        if (this.getBoardCell(board, new Point(coords.x, coords.y + 1))) {
+            adjacentVertices.push(this.getBoardCell(board, new Point(coords.x, coords.y + 1)));
+        }
+        
+        // Get west adjacent vertex
+        if (this.getBoardCell(board, new Point(coords.x - 1, coords.y))) {
+            adjacentVertices.push(this.getBoardCell(board, new Point(coords.x - 1, coords.y)));
+        }
+
+        return adjacentVertices;
+    },
+    // Get an edge that connects two vertices: or null if none exists
+    getConnectingEdge: function (vertex, adjacentVertex) {
+        var connectingEdge = null;
+
+        adjacentVertex.outEdges.forEach(edge => {
+            if (edge.destination.equals(vertex.coords)) {
+                connectingEdge = edge;
+            }
+        });
+
+        return connectingEdge;
     }
 }

@@ -22,6 +22,7 @@ module.exports = function (req, res, next) {
   // There is food, find the food with the lowest distance
   var foods = [];
 
+
   // Add all the vertices with food to the foodQueue
   req.body.food.map(food => { return new Point(food[0], food[1]) })
     .forEach(food => foods.push(boardUtils.getBoardCell(req.body.board, food)));

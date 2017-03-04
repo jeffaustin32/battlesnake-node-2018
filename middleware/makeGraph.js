@@ -23,43 +23,90 @@ module.exports = function (methods) {
       comparator: function (a, b) { return a.compareTo(b) }
     });
 
-    // Go through all the board cells
-    for (var col = 0; col < req.body.width; col++) {
-      for (var row = 0; row < req.body.height; row++) {
-        // Get the current board cell
-        var cell = req.body.board[col][row];
-        var cellCoords = new Point(col, row);
-        
-        // Create a new vertex representing that cell
-        var vertex = new Vertex(cell.state, cell.snake, cellCoords);
+    // Define the game board 
+    req.body.board = [];
 
-        // This is the source node, keep track of it for when we choose our next move
+    // Create the empty vertex board    
+    for (var i = 0; i < req.body.width; i++) {
+      req.body.board[i] = [];
+      for (var j = 0; j < req.body.height; j++) {
+        var cellCoords = new Point(i, j);
+
+        // Create a new vertex representing that cell
+        var vertex = new Vertex('empty', 'none', cellCoords);
+
+        // Store the vertex back in the request body's board
+        boardUtils.setBoardCell(req.body.board, cellCoords, vertex);
+      }
+    }
+
+    // Add all snakes to the board
+    req.body.snakes.forEach(snake => {
+      // Add snake segments to board
+      snake.coords.forEach((segment, index) => {
+        var segmentCoords = new Point(segment[0], segment[1]);
+        var vertex = boardUtils.getBoardCell(req.body.board, segmentCoords);
+        vertex.snake = snake;
+
+        if (vertex.state != 'empty') {
+          return;
+        }
+
+        vertex.state = 'body';
+
+        // Check if the snake is us
+        if (snake.id === req.body.you) {
+          // Set the state of the vertex
+          if (index === 0) {
+            vertex.state = 'head';
+            vertex.distance = 0;
+            vertex.isSource = true;
+          }
+
+          // Store our snake details into the body.you variable
+          var myId = req.body.you;
+          req.body.you = snake;
+          req.body.you.id = myId;
+        } else if (index === 0) {
+          vertex.state = 'head';
+          // TODO: Call thaynes function
+
+        }
+
+        // Store the vertex back into the board
+        boardUtils.setBoardCell(req.body.board, segmentCoords, vertex);
+      });
+    });
+
+    // Add all food to the board
+    req.body.food.forEach(food => {
+      var foodCoords = new Point(food[0], food[1]);
+      var vertex = boardUtils.getBoardCell(req.body.board, foodCoords);
+      vertex.state = 'food';
+
+      // TODO: Call any food edge adjusting function
+
+      // Store the vertex back into the board
+      boardUtils.setBoardCell(req.body.board, foodCoords, vertex);
+
+      req.body.board[foodCoords.x][foodCoords.y] = vertex;
+    });
+
+    // Add all out edges
+    req.body.board.forEach((col, colIndex) => {
+      col.forEach((vertex, rowIndex) => {
+        vertex.addEdges(req.body.board);
+
         if (vertex.isSource) {
           req.body.source = vertex;
         }
 
-        // Do not make any connections to an enemy snake segment or our own snake's body
-        if (vertex.containsSnake(req.body.board, cellCoords, true)) {
-          // Store the vertex back in the request body's board
-          boardUtils.setBoardCell(req.body.board, cellCoords, vertex);
-          // Don't want any outgoing edges from this cell
-          continue;
-        }
+        boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
-        // This vertex does not contain an enemy snake or our body, add all out edges for this vertex
-        vertex.addEdges(req.body.board);
-
-        // For vertex in the graph, apply all edge weight adjusting method
-        methods.forEach(method => {
-          vertex = method(vertex);
-        });
-
-        // Store the vertex back in the request body's board
-        boardUtils.setBoardCell(req.body.board, cellCoords, vertex);
-        // Add the vertex to the priority queue
+        // Add each vertex to the priority queue
         req.body.vertexDistancePQueue.queue(vertex);
-      }
-    }
+      });
+    });
 
     next();
   };
