@@ -37,10 +37,10 @@ function Vertex(state, snake, coords) {
 
     // Establish adjacent cells
     this.adjacentCells = [
-        { direction: 'north', coords: new Point(this.coords.x, this.coords.y - 1) },
-        { direction: 'east', coords: new Point(this.coords.x + 1, this.coords.y) },
-        { direction: 'south', coords: new Point(this.coords.x, this.coords.y + 1) },
-        { direction: 'west', coords: new Point(this.coords.x - 1, this.coords.y) }];
+        { direction: 'up', coords: new Point(this.coords.x, this.coords.y - 1) },
+        { direction: 'right', coords: new Point(this.coords.x + 1, this.coords.y) },
+        { direction: 'down', coords: new Point(this.coords.x, this.coords.y + 1) },
+        { direction: 'left', coords: new Point(this.coords.x - 1, this.coords.y) }];
 }
 
 Vertex.prototype.compareTo = function (otherVertex) {

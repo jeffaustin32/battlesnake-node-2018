@@ -1,6 +1,6 @@
 /*
 *   Edge {
-*        direction:     'north' | 'east' | 'south' | 'west',
+*        direction:     'up' | 'left' | 'down' | 'right',
 *        weight:        Integer,
 *        source:        Point | null,
 *        destination:   Point | null
@@ -13,7 +13,7 @@ var Point = require('./point');
 module.exports = Edge;
 
 function Edge(direction, source, destination) {
-    this.direction = direction || 'north';
+    this.direction = direction || 'up';
     this.weight = 100;
     this.source = source || null;
     this.destination = destination || null;
