@@ -26,8 +26,6 @@ module.exports = function (methods) {
     // Define the game board 
     req.body.board = [];
 
-    console.log('a food', req.body.food[0]);
-
     // Create the empty vertex board    
     for (var i = 0; i < req.body.width; i++) {
       req.body.board[i] = [];
@@ -71,8 +69,6 @@ module.exports = function (methods) {
           req.body.you.id = myId;
         } else if (index === 0) {
           vertex.state = 'head';
-          // TODO: Call thaynes function
-
         }
 
         // Store the vertex back into the board
@@ -99,6 +95,8 @@ module.exports = function (methods) {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
 
+
+
         if (vertex.isSource) {
           req.body.source = vertex;
         }
@@ -110,6 +108,11 @@ module.exports = function (methods) {
       });
     });
 
+    req.body.snakes.forEach(snake => {
+      vertex = require('../ai/foreignHead')(req, new Point(snake.coords[0][0], snake.coords[0][1]));
+    });
+
+  console.log(JSON.stringify(req.body.board));
     next();
   };
 }

@@ -48,21 +48,21 @@ app.use(function (err, req, res, next) {
 });
 
 // 500 handler middleware, respond with JSON only
-app.use(function (err, req, res, next) {
-  if (req.headerSent) {
-    return next(err);
-  }
+// app.use(function (err, req, res, next) {
+//   if (req.headerSent) {
+//     return next(err);
+//   }
 
-  var statusCode = err.status || 500;
+//   var statusCode = err.status || 500;
 
-  res.status(statusCode);
-  res.send({
-    status: statusCode,
-    error: err
-  });
+//   res.status(statusCode);
+//   res.send({
+//     status: statusCode,
+//     error: err
+//   });
 
-  return;
-});
+//   return;
+// });
 
 var server = app.listen(app.get('port'), function () {
   console.log('Server listening at http://%s:%s', config.host, app.get('port'));

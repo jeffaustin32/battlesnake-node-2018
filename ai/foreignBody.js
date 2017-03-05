@@ -18,7 +18,7 @@ module.exports = function(board, cellCoords) {
     }
 
     // We will only have a max of 3 surrounding nodes if this is the tail. Else max 2.
-    var snakeProximity = getAdjacentVertices(req.body.board, vertex.coords);
+    var snakeProximity = utils.getAdjacentVertices(req.body.board, vertex.coords);
     var thisEdge = ''
     // Now we can add weight to inner and then secondary nodes.
     snakeProximity.forEach(proximity=>{

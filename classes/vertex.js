@@ -59,6 +59,10 @@ Vertex.prototype.containsSnake = function (board, coords, allowOwnHead) {
     // Get the cell in question
     var cell = boardUtils.getBoardCell(board, coords);
 
+    if (!cell) {
+        return false;
+    }
+
     // Cell contains the head or body of a snake
     if (/head|body/.test(cell.state)) {
         // Allow connection with our own head

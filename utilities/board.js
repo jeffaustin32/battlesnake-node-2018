@@ -4,7 +4,7 @@
 *
 */
 
-require('../classes/point');
+var Point = require('../classes/point');
 
 module.exports = {
     getBoardCell: function (board, coords) {
@@ -40,8 +40,10 @@ module.exports = {
         var vertex = this.getBoardCell(board, coords);
         var adjacentVertices = [];
 
+        console.log('getadjacentvertices coords', coords);
+
         // Get north adjacent vertex
-        if (this.getBoardCell(board, new Point(coords.x, coords.y - 1))) {
+        if (this.getBoardCell(board, new Point(coords.x, coords.y - 1))) {            
             adjacentVertices.push(this.getBoardCell(board, new Point(coords.x, coords.y - 1)));
         }
         
