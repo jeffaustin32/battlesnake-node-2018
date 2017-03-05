@@ -23,13 +23,13 @@ module.exports = {
             return false;
         }
 
-        if (coords.x < 0 || coords.x >= board.length) {
+        if (coords.x < 0 || coords.x > board.length) {
             return false;
         }
 
         var col = board[coords.x];
 
-        if (coords.y < 0 || coords.y >= col.length) {
+        if (coords.y < 0 || coords.y > col.length) {
             return false;
         }
 
