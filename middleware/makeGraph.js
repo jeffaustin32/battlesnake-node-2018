@@ -46,7 +46,7 @@ module.exports = function (methods) {
     req.body.snakes.forEach(snake => {
       // Add snake segments to board
       snake.coords.forEach((segment, index) => {
-        var segmentCoords = new Point(segment[0], segment[1]);
+        var segmentCoords = new Point(segment[1], segment[0]);
         var vertex = boardUtils.getBoardCell(req.body.board, segmentCoords);
         vertex.snake = snake;
 
@@ -82,7 +82,7 @@ module.exports = function (methods) {
 
     // Add all food to the board
     req.body.food.forEach(food => {
-      var foodCoords = new Point(food[0], food[1]);
+      var foodCoords = new Point(food[1], food[0]);
       var vertex = boardUtils.getBoardCell(req.body.board, foodCoords);
       vertex.state = 'food';
 
