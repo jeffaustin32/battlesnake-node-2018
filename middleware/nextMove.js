@@ -16,7 +16,7 @@ module.exports = function (req, res, next) {
     });
 
     req.move = req.body.source.outEdges[0].direction;
-    next();
+    return next();
   }
 
   // There is food, find the food with the lowest distance
@@ -62,7 +62,7 @@ module.exports = function (req, res, next) {
     });
 
     req.move = req.body.source.outEdges[0].direction;
-    next();
+    return next();
   } 
 
   // Store the direction of the first move  

@@ -103,9 +103,12 @@ module.exports = function (methods) {
 
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
+        process.stdout.write(vertex.state + ' \t');
+
         // Add each vertex to the priority queue
         req.body.vertexDistancePQueue.queue(vertex);
       });
+      console.log('');
     });
 
     next();
