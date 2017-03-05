@@ -49,6 +49,16 @@ module.exports = function (req, res, next) {
     }
   });
 
+  // There is no eligible path to food
+  if (!req.move) {
+    req.body.source.outEdges.sort(function (a, b) {
+      return a.compareTo(b);
+    });
+
+    req.move = req.body.source.outEdges[0].direction;
+    next();
+  }
+
   // Store the direction of the first move  
   next();
 }
