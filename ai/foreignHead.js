@@ -29,12 +29,12 @@ module.exports = function(board, cellCoords) {
     } 
 
     // Grab our surrounding nodes (possible max 3, can't go back on our own body)
-    var headPath = getAdjacentVertices(req.body.board, vertex.coords);
+    var headPath = utils.getAdjacentVertices(req.body.board, vertex.coords);
 
     // Now we can add weight to inner and then secondary nodes.
     headPath.forEach(currentNode => {
     	//Then get all other attaching nodes.
-    	var secondaryNodes = getAdjacentVertices(req.body.board, currentNode.coord);
+    	var secondaryNodes = utils.getAdjacentVertices(req.body.board, currentNode.coord);
     	var connectionToHeadPath = new Array();
     	secondaryNodes.forEach(secondNode => {
     		// Weigh these edges from each node
@@ -42,15 +42,14 @@ module.exports = function(board, cellCoords) {
     		if(predatory){
     			// Get aggresive son!
     			// We need to pull this from edges array if they are there to manipulate them - or else add with new values
-    			connectionToHeadPath = getConnectingEdge(secondNode, currentNode );
+    			connectionToHeadPath = utils.getConnectingEdge(secondNode, currentNode );
     			// Update edge between outer node (secondNode) toward currentNode(closest to this foreign snake) aggressivley.
     			connectionToHeadPath.weight -= 50; 
     			// Push this back up to our edge array
-    			
 
     		} else {
     			// Run away! Run away!
-       			var connectionToHeadPath = getConnectingEdge(secondNode, currentNode );
+       			var connectionToHeadPath = utils.getConnectingEdge(secondNode, currentNode );
        			// Update edge between outer node (secondNode) toward currentNode(closest to this foreign snake) to scare our poor snake away.
        			connectionToHeadPath.weight += 100;
        			// push this back up to our edge array

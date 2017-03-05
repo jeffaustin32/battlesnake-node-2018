@@ -23,13 +23,13 @@ module.exports = function(board, cellCoords) {
     // Now we can add weight to inner and then secondary nodes.
     snakeProximity.forEach(proximity=>{
     	//Then get all other attaching nodes.
-    	var secondaryNodes = getAdjacentVertices(req.body.board, proximity.coords);
     	secondaryNodes.forEach(sNode=>{
     		// Weigh these edges from each node
             // We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.
             thisEdge = getConnectingEdge(sNode, proximityNode);
+            // Never want to make the choice to hit a body or head towards one if we can help it.
             thisEdge.weight += 50;
-
+            // Push value to outerEdge var
 
     	});
     });
