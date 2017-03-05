@@ -49,9 +49,14 @@ module.exports = function (req, res, next) {
     }
   });
 
+  if (req.body.source.outEdges.length === 0) {
+    console.log('================================ there are no outedges from this vertex =============== ');
+  }
+
+
   // There is no eligible path to food
-  if (!req.move) {
-    console.log('no moves available!!!');
+  if (!req.move) {    
+    console.log('================================ there are no outedges to the destination vertex =============== ');
     req.body.source.outEdges.sort(function (a, b) {
       return a.compareTo(b);
     });
