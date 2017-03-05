@@ -44,7 +44,14 @@ function Vertex(state, snake, coords) {
 }
 
 Vertex.prototype.compareTo = function (otherVertex) {
-    otherVertex.distance - this.distance;
+    if (this.distance < otherVertex.distance) {
+        return -1;
+    }
+    if (this.distance > otherVertex.distance) {
+        return 1;
+    }
+
+    return 0;
 };
 
 Vertex.prototype.containsSnake = function (board, coords, allowOwnHead) {

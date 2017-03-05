@@ -19,14 +19,21 @@ function Edge(direction, source, destination) {
     this.destination = destination || null;
 }
 
-Edge.prototype.getSource = function(board) {
+Edge.prototype.getSource = function (board) {
     return boardUtils.getBoardCell(board, this.source);
 }
 
-Edge.prototype.getDestination = function(board) {
+Edge.prototype.getDestination = function (board) {
     return boardUtils.getBoardCell(board, this.destination);
 }
 
 Edge.prototype.compareTo = function (otherEdge) {
-    otherEdge.weight - this.weight;
+    if (this.weight < otherEdge.weight) {
+        return -1;
+    }
+    if (this.weight > otherEdge.weight) {
+        return 1;
+    }
+
+    return 0;
 };

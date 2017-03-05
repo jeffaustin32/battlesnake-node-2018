@@ -105,14 +105,14 @@ module.exports = function (methods) {
 
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
-        process.stdout.write('[(' + vertex.coords.x + ', ' + vertex.coords.y + '): ' + vertex.state + ': ' + vertex.outEdges.length + '] \t');
-
         // Add each vertex to the priority queue
         req.body.vertexDistancePQueue.queue(vertex);
       });
-      console.log('');
     });
 
     next();
   };
 }
+
+
+
