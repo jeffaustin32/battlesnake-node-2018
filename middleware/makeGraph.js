@@ -26,6 +26,8 @@ module.exports = function (methods) {
     // Define the game board 
     req.body.board = [];
 
+    console.log('a food', req.body.food[0]);
+
     // Create the empty vertex board    
     for (var i = 0; i < req.body.width; i++) {
       req.body.board[i] = [];
