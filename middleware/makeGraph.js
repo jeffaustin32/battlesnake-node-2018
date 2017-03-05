@@ -26,6 +26,8 @@ module.exports = function (methods) {
     // Define the game board 
     req.body.board = [];
 
+    console.log('a food', req.body.food[0]);
+
     // Create the empty vertex board    
     for (var i = 0; i < req.body.width; i++) {
       req.body.board[i] = [];
@@ -103,9 +105,12 @@ module.exports = function (methods) {
 
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
+        process.stdout.write('[(' + vertex.coords.x + ', ' + vertex.coords.y + '): ' + vertex.state + ': ' + vertex.outEdges.length + '] \t');
+
         // Add each vertex to the priority queue
         req.body.vertexDistancePQueue.queue(vertex);
       });
+      console.log('');
     });
 
     next();
