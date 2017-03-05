@@ -32,7 +32,7 @@ module.exports = function (methods) {
     for (var i = 0; i < req.body.width; i++) {
       req.body.board[i] = [];
       for (var j = 0; j < req.body.height; j++) {
-        var cellCoords = new Point(j, i);
+        var cellCoords = new Point(i, j);
 
         // Create a new vertex representing that cell
         var vertex = new Vertex('empty', 'none', cellCoords);
@@ -46,7 +46,7 @@ module.exports = function (methods) {
     req.body.snakes.forEach(snake => {
       // Add snake segments to board
       snake.coords.forEach((segment, index) => {
-        var segmentCoords = new Point(segment[1], segment[0]);
+        var segmentCoords = new Point(segment[0], segment[1]);
         var vertex = boardUtils.getBoardCell(req.body.board, segmentCoords);
         vertex.snake = snake;
 
@@ -82,7 +82,7 @@ module.exports = function (methods) {
 
     // Add all food to the board
     req.body.food.forEach(food => {
-      var foodCoords = new Point(food[1], food[0]);
+      var foodCoords = new Point(food[0], food[1]);
       var vertex = boardUtils.getBoardCell(req.body.board, foodCoords);
       vertex.state = 'food';
 
@@ -105,7 +105,7 @@ module.exports = function (methods) {
 
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
-        process.stdout.write('[' + vertex.state + ': ' + vertex.outEdges.length + '] \t');
+        process.stdout.write('[(' + vertex.coords.x + ', ' + vertex.coords.y + '): ' + vertex.state + ': ' + vertex.outEdges.length + '] \t');
 
         // Add each vertex to the priority queue
         req.body.vertexDistancePQueue.queue(vertex);
