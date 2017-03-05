@@ -51,6 +51,7 @@ module.exports = function (req, res, next) {
 
   // There is no eligible path to food
   if (!req.move) {
+    console.log('no moves available!!!');
     req.body.source.outEdges.sort(function (a, b) {
       return a.compareTo(b);
     });

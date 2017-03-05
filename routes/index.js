@@ -64,8 +64,6 @@ router.post(config.routes.move, function (req, res) {
     taunt: config.snake.taunt.move
   };
 
-  console.log(req.move);
-
   return res.json(data);
 });
 
