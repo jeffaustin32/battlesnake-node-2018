@@ -32,7 +32,7 @@ module.exports = function (methods) {
     for (var i = 0; i < req.body.width; i++) {
       req.body.board[i] = [];
       for (var j = 0; j < req.body.height; j++) {
-        var cellCoords = new Point(i, j);
+        var cellCoords = new Point(j, i);
 
         // Create a new vertex representing that cell
         var vertex = new Vertex('empty', 'none', cellCoords);
