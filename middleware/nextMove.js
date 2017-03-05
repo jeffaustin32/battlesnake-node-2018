@@ -57,7 +57,7 @@ module.exports = function (req, res, next) {
 
     req.move = req.body.source.outEdges[0].direction;
     next();
-  }
+  } 
 
   // Store the direction of the first move  
   next();
