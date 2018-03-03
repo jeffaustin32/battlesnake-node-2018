@@ -79,7 +79,7 @@ module.exports = {
 
         // Marker to see if we would win a head-on collison - assume a loss by default
         var win = false;
-        if (ourSnakeSize > enemySnakeSize) {
+        if (youSnakeSize > enemySnakeSize) {
             win = true;
         }
 
