@@ -22,7 +22,7 @@
     }
   },
   "weightValues": {
-    "default": "100",
+    "default": "1000",
     "border": "50",
     "center": "25",
     "turnWeights": {
