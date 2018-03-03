@@ -5,16 +5,13 @@ var config = require('../config.json');
 module.exports = function (req, res, next) {
     // Get the vertex for the head of our snake
     let headPoint = new Point(req.body.you.body.data[0].x, req.body.you.body.data[0].y);
-    let headVertex = getBoardCell(req.body.board, head);
-
-    // Flood fill from our head
-    floodFill(req, headVertex, 0);
-
-
-    // TODO: Remove later
     let adj = boardUtils.getAdjacentVertices(req.body.board, headPoint);
+    
     adj.forEach(vertex => {
-        console.log(vertex.maxSubtreeHeight);
+        // Flood fill from our head
+        floodFill(req, vertex, 0);
+        let maxSubtreeHeight = vertex.maxSubtreeHeight;
+        console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}, adding: ${parseInt(eval(config.weightValues.floodFill.pathLength))} weight`);
     });
 
     next();
@@ -25,6 +22,8 @@ function floodFill(req, vertex, depth) {
     depth++;
     // Mark vertex as visited
     vertex.visited = true;
+
+    console.log(`Visiting cell (${vertex.coords.x}, ${vertex.coords.y}), Current depth: ${depth}`);
 
     // If no children
     if (vertex.outEdges.length === 0 || depth === config.boardValues.floodFillLimit) {
@@ -40,10 +39,15 @@ function floodFill(req, vertex, depth) {
 
         // This vertex has already been visited
         if (destinationVertex.visited) {
+            vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, depth);
             return;
         }
+
         // Depth first search for max subtree height
-        vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, floodFill(req, destinationVertex, depth));
+
+        if (vertex.maxSubtreeHeight < config.boardValues.floodFillLimit) {
+            vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, floodFill(req, destinationVertex, depth));
+        }
     });
 
     // Mark vertex as unvisited
