@@ -95,8 +95,6 @@ module.exports = function (methods) {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
 
-
-
         if (vertex.isSource) {
           req.body.source = vertex;
         }

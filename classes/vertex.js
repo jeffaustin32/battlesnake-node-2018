@@ -8,6 +8,7 @@
 *        parent:    null | Point
 *        coords:    Point
 *        isSource:  true | false
+*        maxSubtreeHeight: Integer
 *   }
 */
 
@@ -27,6 +28,7 @@ function Vertex(state, snake, coords) {
     this.parent = null; // When we have lightest food, work backwards through parent to find path
     this.coords = coords || null; // Store the coordinates so we can later check if vertex is visited in constant time
     this.isSource = false;
+    this.maxSubtreeHeight = 0; // Used in flood fill
 
     // This is the head of our snake
     if (state === 'head' && snake === config.snake.name) {
