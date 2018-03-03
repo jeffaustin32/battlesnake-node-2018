@@ -49,7 +49,7 @@
         "threshold": "200"
       },
       {
-        "healthScale": "bl / 2",
+        "healthScale": "boardLength / 2",
         "threshold": "50"
       },
       {
@@ -58,7 +58,7 @@
       }
     ],
     "floodFill": {
-      "pathLength": "1000 / pl",
+      "pathLength": "1000 / pathLength",
       "pathFood": "0 - (100 / hp)"
     }
   }
