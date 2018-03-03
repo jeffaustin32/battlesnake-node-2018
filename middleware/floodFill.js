@@ -50,5 +50,5 @@ function floodFill(req, vertex, depth) {
 
     // Mark vertex as unvisited
     vertex.visited = false;
-    return vertex.maxSubtreeHeight;
+    return Math.max(vertex.maxSubtreeHeight, depth);
 }
