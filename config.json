@@ -9,8 +9,8 @@
   },
   "snake" : {
     "name": "A-Team",
-    "color": "#683404",
-    "secondary_color": "#063917",
+    "color": "#1A0707",
+    "secondary_color": "#550000",
     "head_type": "bendr",
     "tail_type": "block-bum",
     "head_url": "https://img.cinemablend.com/filter:scale/cb/6/6/3/3/a/8/6633a82444d0d2e50fcf113619fa32e1e961fb3923f96c07c671e9f1286fd4a0.jpg?mw=600",
