@@ -6,6 +6,7 @@ var router = express.Router();
 var middleware = {
   makeGraph: require('../middleware/makeGraph'),
   floodFill: require('../middleware/floodFill'),
+  swapWeights: require('../middleware/swapWeights'),
   dijkstra: require('../middleware/dijkstra'),
   nextMove: require('../middleware/nextMove')
 }
@@ -54,6 +55,8 @@ router.post(config.routes.end, function (req, res) {
 router.use(middleware.makeGraph(edgeWeightAdjustments));
 // Apply flood fill
 router.use(middleware.floodFill);
+// Move vertex temp weights to edge weights
+router.use(middleware.swapWeights);
 // Dijkstra's Algorithm (Single source shortest path)
 router.use(middleware.dijkstra);
 // Decide next move 
