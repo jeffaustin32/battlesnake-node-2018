@@ -5,6 +5,7 @@ var router = express.Router();
 // Middleware to: create graph, adjust weight, get shortest paths, and decide next move
 var middleware = {
   makeGraph: require('../middleware/makeGraph'),
+  floodFill: require('../middleware/floodFill'),
   dijkstra: require('../middleware/dijkstra'),
   nextMove: require('../middleware/nextMove')
 }
@@ -51,6 +52,8 @@ router.post(config.routes.end, function (req, res) {
 
 // Create a graph from the board array
 router.use(middleware.makeGraph(edgeWeightAdjustments));
+// Apply flood fill
+router.use(middleware.floodFill);
 // Dijkstra's Algorithm (Single source shortest path)
 router.use(middleware.dijkstra);
 // Decide next move 
