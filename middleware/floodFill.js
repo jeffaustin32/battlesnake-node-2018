@@ -10,6 +10,13 @@ module.exports = function (req, res, next) {
     // Flood fill from our head
     floodFill(req, headVertex, 0);
 
+
+    // TODO: Remove later
+    let adj = boardUtils.getAdjacentVertices(req.body.board, headPoint);
+    adj.forEach(vertex => {
+        console.log(vertex.maxSubtreeHeight);
+    });
+
     next();
 }
 
