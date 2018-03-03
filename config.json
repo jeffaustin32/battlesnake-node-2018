@@ -61,7 +61,7 @@
       }
     ],
     "floodFill": {
-      "pathLength": "1000 / pathLength",
+      "pathLength": "1000 / maxSubtreeHeight",
       "pathFood": "0 - (100 / hp)"
     }
   }
