@@ -101,7 +101,7 @@ module.exports = function (methods) {
           // Is border edge?
           if (edge.destination.x == 0 || edge.destination.x == req.body.width ||
             edge.destination.y == 0 || edge.destination.y == req.body.height) {
-              edge.weight += parseInt(eval(Config.weightValues.border));
+              edge.weight += parseInt(eval(config.weightValues.border));
           }
 
           // Is center edge?
