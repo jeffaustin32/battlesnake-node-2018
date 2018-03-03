@@ -111,23 +111,7 @@ module.exports = function (methods) {
     req.body.board.forEach((col, colIndex) => {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
-
-        /*
-        var adjacentVertices = boardUtils.getAdjacentVertices(req.body.board, vertex.coords);
-        adjacentVertices.forEach((outerVertex) => {
-          //var connectingEdge = boardUtils.getConnectingEdge(outerVertex, vertex);
-
-          // Eval first turn (for outer verticles)
-          if (outerVertex.snake == 'enemy')
-
-          
-
-        })
-
         
-
-        
-
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
         // Add each vertex to the priority queue
