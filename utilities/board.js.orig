@@ -79,8 +79,13 @@ module.exports = {
     weightEnemySnakeHeadVertices: function (board, vertex, health, youSnakeSize, enemySnakeSize) {
 
         // Marker to see if we would win a head-on collison - assume a loss by default
+<<<<<<< HEAD
+        let win = false;
+        if (ourSnakeSize > enemySnakeSize) {
+=======
         var win = false;
         if (youSnakeSize > enemySnakeSize) {
+>>>>>>> origin/master
             win = true;
         }
 
@@ -98,7 +103,11 @@ module.exports = {
             }
 
             //Then get all other attaching vertices.
+<<<<<<< HEAD
+            let secondaryVertices = utils.getAdjacentVertices(board, outerVertex.coords);
+=======
             var secondaryVertices = this.getAdjacentVertices(board, outerVertex.coords);
+>>>>>>> origin/master
             secondaryVertices.forEach(secondVertex => {
                 // Weigh these edges from each node
                 // We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.

@@ -111,7 +111,7 @@ module.exports = function (methods) {
     req.body.board.forEach((col, colIndex) => {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
-
+        
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
         // Add each vertex to the priority queue
