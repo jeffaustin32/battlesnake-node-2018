@@ -23,7 +23,7 @@ module.exports = function (req, res, next) {
   var foods = [];
 
   // Add all the vertices with food to the foodQueue
-  req.body.food.data.map(food => { return new Point(food[0], food[1]) })
+  req.body.food.data.map(food => { return new Point(food.x, food.y) })
     .forEach(food => foods.push(boardUtils.getBoardCell(req.body.board, food)));
 
   // Sort the food based on vertex distance
