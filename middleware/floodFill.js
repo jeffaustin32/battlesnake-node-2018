@@ -38,6 +38,7 @@ function floodFill(req, vertex, depth) {
 
         // This vertex has already been visited
         if (destinationVertex.visited) {
+            vertex.maxSubtreeHeight = depth;
             return;
         }
 
@@ -50,5 +51,5 @@ function floodFill(req, vertex, depth) {
 
     // Mark vertex as unvisited
     vertex.visited = false;
-    return Math.max(vertex.maxSubtreeHeight, depth);
+    return vertex.maxSubtreeHeight;
 }
