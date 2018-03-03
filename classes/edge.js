@@ -9,13 +9,13 @@
 
 var boardUtils = require('../utilities/board');
 var Point = require('./point');
-var Config = require('../config.json');
+var config = require('../config.json');
 
 module.exports = Edge;
 
 function Edge(direction, source, destination) {
     this.direction = direction || 'up';
-    this.weight = parseInt(eval(Config.weightValues.default));
+    this.weight = parseInt(eval(config.weightValues.default));
     this.source = source || null;
     this.destination = destination || null;
 }

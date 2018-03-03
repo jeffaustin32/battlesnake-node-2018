@@ -31,7 +31,7 @@ function Vertex(state, snake, coords) {
     this.coords = coords || null; // Store the coordinates so we can later check if vertex is visited in constant time
     this.isSource = false;
     this.maxSubtreeHeight = 0; // Used in flood fill
-    this.tempWeight = parseInt(eval(Config.weightValues.default));
+    this.tempWeight = parseInt(eval(config.weightValues.default));
 
     // This is the head of our snake
     if (state === 'head' && snake === config.snake.name) {
