@@ -13,6 +13,7 @@ module.exports = function (req, res, next) {
 
     // TODO: Remove later
     let adj = boardUtils.getAdjacentVertices(req.body.board, headPoint);
+    
     adj.forEach(vertex => {
         console.log('Vertex: ', vertex.maxSubtreeHeight);
     });
