@@ -5,16 +5,11 @@ var config = require('../config.json');
 module.exports = function (req, res, next) {
     // Get the vertex for the head of our snake
     let headPoint = new Point(req.body.you.body.data[0].x, req.body.you.body.data[0].y);
-    let headVertex = boardUtils.getBoardCell(req.body.board, headPoint);
-
-    // Flood fill from our head
-    floodFill(req, headVertex, 0);
-
-
-    // TODO: Remove later
     let adj = boardUtils.getAdjacentVertices(req.body.board, headPoint);
     
     adj.forEach(vertex => {
+        // Flood fill from our head
+        floodFill(req, vertex, 0);
         console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}`);
     });
 
