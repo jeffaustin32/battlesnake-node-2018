@@ -10,7 +10,8 @@ module.exports = function (req, res, next) {
     adj.forEach(vertex => {
         // Flood fill from our head
         floodFill(req, vertex, 0);
-        console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}`);
+        let maxSubtreeHeight = vertex.maxSubtreeHeight;
+        console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}, adding: ${parseInt(eval(config.floodFill.pathLength))} weight`);
     });
 
     next();
