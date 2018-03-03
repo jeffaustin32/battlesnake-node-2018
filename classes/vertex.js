@@ -2,14 +2,15 @@
 * Vertex {
 *        state:         'head'|'body'|'food'|'empty'
 *        boardState:    'border'|'center'|'standard'
-*        snake:         'you'|'enemy'
+*        snake:         'you'|'enemy'|'none'
 *        distance:      Infinity | 0,
 *        visited:       false
 *        outEdges:      [Edges]
 *        parent:        null | Point
 *        coords:        Point
 *        isSource:      true | false
-*       maxSubtreeHeight: Integer
+*        maxSubtreeHeight: Integer
+*        tempWeight:    Integer
 *   }
 */
 
@@ -30,6 +31,7 @@ function Vertex(state, snake, coords) {
     this.coords = coords || null; // Store the coordinates so we can later check if vertex is visited in constant time
     this.isSource = false;
     this.maxSubtreeHeight = 0; // Used in flood fill
+    this.tempWeight = parseInt(eval(config.weightValues.default));
 
     // This is the head of our snake
     if (state === 'head' && snake === config.snake.name) {

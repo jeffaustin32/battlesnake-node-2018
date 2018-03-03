@@ -5,6 +5,7 @@
 */
 
 var Point = require('../classes/point');
+var config = require('../config.json');
 
 module.exports = {
     getBoardCell: function (board, coords) {
@@ -73,5 +74,40 @@ module.exports = {
         });
 
         return connectingEdge;
+    },
+
+    weightEnemySnakeHeadVertices: function (board, vertex, health, youSnakeSize, enemySnakeSize) {
+
+        // Marker to see if we would win a head-on collison - assume a loss by default
+        var win = false;
+        if (youSnakeSize > enemySnakeSize) {
+            win = true;
+        }
+
+        // Grab our surrounding vertices (possible max 3, can't go back to own body)
+        var adjacentVertices = this.getAdjacentVertices(board, vertex.coords);
+
+        // Now we can add weight to inner and then secondary vertices.
+        adjacentVertices.forEach(outerVertex => {
+
+            var hp = health;
+            if (win) {
+                outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.first.win));
+            } else {
+                outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.first.loss));
+            }
+
+            //Then get all other attaching vertices.
+            var secondaryVertices = this.getAdjacentVertices(board, outerVertex.coords);
+            secondaryVertices.forEach(secondVertex => {
+                // Weigh these edges from each node
+                // We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.
+                if (win) {
+                    outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.second.win));
+                } else {
+                    outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.second.loss));
+                }
+            });
+        });
     }
 }

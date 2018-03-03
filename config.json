@@ -22,7 +22,7 @@
     }
   },
   "boardValues": {
-    "floodFillLimit": 10
+    "floodFillLimit": 10 
   },
   "weightValues": {
     "default": "1000",
@@ -61,7 +61,7 @@
       }
     ],
     "floodFill": {
-      "pathLength": "1000 / pathLength",
+      "pathLength": "1000 / maxSubtreeHeight",
       "pathFood": "0 - (100 / hp)"
     }
   }
