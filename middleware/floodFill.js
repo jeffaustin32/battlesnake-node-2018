@@ -5,7 +5,7 @@ var config = require('../config.json');
 module.exports = function (req, res, next) {
     // Get the vertex for the head of our snake
     let headPoint = new Point(req.body.you.body.data[0].x, req.body.you.body.data[0].y);
-    let headVertex = boardUtils.getBoardCell(req.body.board, head);
+    let headVertex = boardUtils.getBoardCell(req.body.board, headPoint);
 
     // Flood fill from our head
     floodFill(req, headVertex, 0);
