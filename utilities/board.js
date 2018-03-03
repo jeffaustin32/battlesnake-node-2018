@@ -29,9 +29,6 @@ module.exports = {
 
         var col = board[coords.x];
 
-        console.log("coords", coords);
-        console.log("Col", col);
-
         if (coords.y < 0 || coords.y >= col.length) {
             return false;
         }
