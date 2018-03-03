@@ -104,8 +104,8 @@ module.exports = function (methods) {
               edge.weight += parseInt(eval(config.weightValues.border));
           }
 
-          // Is center edge?
           
+
         })
 
         
