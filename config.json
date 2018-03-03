@@ -21,6 +21,9 @@
       "end": "That concludes your flight with Miracle Airlines, the only airline where Lady Luck is your co-pilot."
     }
   },
+  "boardValues": {
+    "floodFillLimit": 10
+  },
   "weightValues": {
     "default": "1000",
     "border": "50",
