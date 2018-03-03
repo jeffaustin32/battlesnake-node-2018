@@ -22,7 +22,7 @@
     }
   },
   "boardValues": {
-    "centerSize": "boardLength / 5"
+    "floodFillLimit": 10 
   },
   "weightValues": {
     "default": "1000",
