@@ -14,8 +14,12 @@ module.exports = function (req, res, next) {
                 let edgeDestToSource = boardUtils.getConnectingEdge(vertex, outerVertex);
                 let edgeSourceToDest = boardUtils.getConnectingEdge(outerVertex, vertex);
                 
-                edgeDestToSource.weight = vertex.tempWeight;
-                edgeSourceToDest.weight = outerVertex.tempWeight;
+                if (edgeDestToSource) {
+                    edgeDestToSource.weight = vertex.tempWeight;
+                }
+                if (edgeSourceToDest) {
+                    edgeSourceToDest.weight = outerVertex.tempWeight;
+                }
             });
         });
     });
