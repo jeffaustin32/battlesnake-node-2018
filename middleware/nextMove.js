@@ -10,7 +10,7 @@ var Point = require('../classes/point');
 
 module.exports = function (req, res, next) {
   // If there is no food, set req.move to a direction
-  if (req.body.food.length === 0) {
+  if (req.body.food.data.length === 0) {
     req.body.source.outEdges.sort(function (a, b) {
       return a.compareTo(b);
     });
@@ -23,7 +23,7 @@ module.exports = function (req, res, next) {
   var foods = [];
 
   // Add all the vertices with food to the foodQueue
-  req.body.food.map(food => { return new Point(food[0], food[1]) })
+  req.body.food.data.map(food => { return new Point(food[0], food[1]) })
     .forEach(food => foods.push(boardUtils.getBoardCell(req.body.board, food)));
 
   // Sort the food based on vertex distance
