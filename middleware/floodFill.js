@@ -27,6 +27,8 @@ function floodFill(req, vertex, depth) {
     // Mark vertex as visited
     vertex.visited = true;
 
+    console.log(`Visiting cell (${vertex.coords.x}, ${vertex.coords.y}), Current depth: ${depth}`);
+
     // If no children
     if (vertex.outEdges.length === 0 || depth === config.boardValues.floodFillLimit) {
         // Reset visisted property so other paths can reach this vertex
