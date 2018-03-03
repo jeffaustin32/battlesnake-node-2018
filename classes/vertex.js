@@ -1,13 +1,14 @@
 /*
 *   Vertex {
-*        state:     'head'|'body'|'food'|'empty'
-*        snake:     'you'|'enemy'
-*        distance:  Infinity | 0,
-*        visited:   false
-*        outEdges:  [Edges]
-*        parent:    null | Point
-*        coords:    Point
-*        isSource:  true | false
+*        state:         'head'|'body'|'food'|'empty'
+*        boardState:    'border'|'center'|'standard'
+*        snake:         'you'|'enemy'
+*        distance:      Infinity | 0,
+*        visited:       false
+*        outEdges:      [Edges]
+*        parent:        null | Point
+*        coords:        Point
+*        isSource:      true | false
 *   }
 */
 

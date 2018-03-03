@@ -46,7 +46,6 @@ module.exports = function (methods) {
       snake.body.data.forEach((segment, index) => {
         var segmentCoords = new Point(segment.x, segment.y);
         var vertex = boardUtils.getBoardCell(req.body.board, segmentCoords);
-        vertex.snake = snake;
 
         if (vertex.state != 'empty') {
           return;
@@ -55,21 +54,21 @@ module.exports = function (methods) {
         vertex.state = 'body';
 
         // Check if the snake is us
-        if (snake.id === req.body.you) {
+        if (snake.id === req.body.you.id) {
+          vertex.snake = 'you'
           // Set the state of the vertex
           if (index === 0) {
             vertex.state = 'head';
             vertex.distance = 0;
             vertex.isSource = true;
           }
-
-          // Store our snake details into the body.you variable
-          var myId = req.body.you;
-          req.body.you = snake;
-          req.body.you.id = myId;
-        } else if (index === 0) {
-          vertex.state = 'head';
-        }
+        // Is enemy snake
+        } else {
+          vertex.snake = 'enemy';
+          if (index === 0) {
+            vertex.state = 'head';
+          }
+        } 
 
         // Store the vertex back into the board
         boardUtils.setBoardCell(req.body.board, segmentCoords, vertex);
@@ -95,11 +94,26 @@ module.exports = function (methods) {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
 
-
-
         if (vertex.isSource) {
           req.body.source = vertex;
         }
+
+        // Apply initial weighting from board state to all edges
+
+        vertex.outEdges.forEach((edge) => {
+          // Is border edge?
+          if (edge.destination.x == 0 || edge.destination.x == req.body.width ||
+            edge.destination.y == 0 || edge.destination.y == req.body.height) {
+              edge.weight += parseInt(eval(Config.weightValues.border));
+          }
+
+          // Is center edge?
+          
+        })
+
+        
+
+        
 
         boardUtils.setBoardCell(req.body.board, new Point(colIndex, rowIndex), vertex);
 
