@@ -98,7 +98,7 @@ module.exports = {
             }
 
             //Then get all other attaching vertices.
-            var secondaryVertices = utils.getAdjacentVertices(board, outerVertex.coords);
+            var secondaryVertices = getAdjacentVertices(board, outerVertex.coords);
             secondaryVertices.forEach(secondVertex => {
                 // Weigh these edges from each node
                 // We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.
