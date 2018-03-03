@@ -16,14 +16,6 @@ module.exports = function (req, res, next) {
                 
                 edgeDestToSource.weight = vertex.tempWeight;
                 edgeSourceToDest.weight = outerVertex.tempWeight;
-
-                //Replace the updated edges to the appropriate vertex outEdge array
-                vertex.outEdges.forEach((edge) => {
-                    if (edge.source.compareTo(edgeDestToSource.source) &&
-                        edge.destination.compareTo(edgeDestToSource.destination)) {
-                            
-                    }
-                });
             });
         });
     });
