@@ -38,7 +38,7 @@ function floodFill(req, vertex, depth) {
 
         // This vertex has already been visited
         if (destinationVertex.visited) {
-            vertex.maxSubtreeHeight = depth;
+            vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, depth);
             return;
         }
 
