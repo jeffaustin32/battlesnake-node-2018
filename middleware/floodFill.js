@@ -47,7 +47,10 @@ function floodFill(req, vertex, depth) {
         }
 
         // Depth first search for max subtree height
-        vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, floodFill(req, destinationVertex, depth));
+
+        if (vertex.maxSubtreeHeight < config.boardValues.floodFillLimit) {
+            vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, floodFill(req, destinationVertex, depth));
+        }
     });
 
     // Mark vertex as unvisited
