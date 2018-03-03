@@ -2,7 +2,7 @@
 var Point = require('../classes/point');
 var Edge = require('../classes/edge');
 var Vertex = require('../classes/vertex');
-var Config = require('../config.json');
+var config = require('../config.json');
 
 // Utility functions to get board cells
 var utils = require('../utilities/board');

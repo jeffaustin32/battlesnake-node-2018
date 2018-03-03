@@ -5,6 +5,7 @@
 */
 
 var Point = require('../classes/point');
+var config = require('../config.json');
 
 module.exports = {
     getBoardCell: function (board, coords) {
@@ -91,9 +92,9 @@ module.exports = {
 
             var hp = health;
             if (win) {
-                outerVertex.tempWeight += parseInt(eval(Config.weightValues.turnWeights.first.win));
+                outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.first.win));
             } else {
-                outerVertex.tempWeight += parseInt(eval(Config.weightValues.turnWeights.first.loss));
+                outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.first.loss));
             }
 
             //Then get all other attaching vertices.
@@ -102,9 +103,9 @@ module.exports = {
                 // Weigh these edges from each node
                 // We want to look back towards the parent of these secondary nodes, and increase the wieght along that path.
                 if (win) {
-                    outerVertex.tempWeight += parseInt(eval(Config.weightValues.turnWeights.second.win));
+                    outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.second.win));
                 } else {
-                    outerVertex.tempWeight += parseInt(eval(Config.weightValues.turnWeights.second.loss));
+                    outerVertex.tempWeight += parseInt(eval(config.weightValues.turnWeights.second.loss));
                 }
             });
         });
