@@ -15,7 +15,7 @@ module.exports = function (req, res, next) {
     let adj = boardUtils.getAdjacentVertices(req.body.board, headPoint);
     
     adj.forEach(vertex => {
-        console.log('Vertex: ', vertex.maxSubtreeHeight);
+        console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}`);
     });
 
     next();
@@ -43,6 +43,7 @@ function floodFill(req, vertex, depth) {
         if (destinationVertex.visited) {
             return;
         }
+
         // Depth first search for max subtree height
         vertex.maxSubtreeHeight = Math.max(vertex.maxSubtreeHeight, floodFill(req, destinationVertex, depth));
     });
