@@ -41,10 +41,10 @@ module.exports = function (methods) {
     }
 
     // Add all snakes to the board
-    req.body.snakes.forEach(snake => {
+    req.body.snakes.data.forEach(snake => {
       // Add snake segments to board
-      snake.coords.forEach((segment, index) => {
-        var segmentCoords = new Point(segment[0], segment[1]);
+      snake.body.data.forEach((segment, index) => {
+        var segmentCoords = new Point(segment.x, segment.y);
         var vertex = boardUtils.getBoardCell(req.body.board, segmentCoords);
         vertex.snake = snake;
 
@@ -77,8 +77,8 @@ module.exports = function (methods) {
     });
 
     // Add all food to the board
-    req.body.food.forEach(food => {
-      var foodCoords = new Point(food[0], food[1]);
+    req.body.food.data.forEach(food => {
+      var foodCoords = new Point(food.x, food.y);
       var vertex = boardUtils.getBoardCell(req.body.board, foodCoords);
       vertex.state = 'food';
 
@@ -108,11 +108,8 @@ module.exports = function (methods) {
       });
     });
 
-    req.body.snakes.forEach(snake => {
-      vertex = require('../ai/foreignHead')(req, new Point(snake.coords[0][0], snake.coords[0][1]));
-    });
+    // TODO: ADD WEIGHTS
 
-  console.log(JSON.stringify(req.body.board));
     next();
   };
 }

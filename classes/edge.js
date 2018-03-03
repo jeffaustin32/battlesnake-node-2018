@@ -1,9 +1,11 @@
 /*
 *   Edge {
-*        direction:     'up' | 'left' | 'down' | 'right',
-*        weight:        Integer,
-*        source:        Point | null,
-*        destination:   Point | null
+*        direction:         'up' | 'left' | 'down' | 'right',
+*        weight:            Integer,
+*        source:            Point | null,
+*        destination:       Point | null,
+*        sourceVertex:      Vertex | null,
+*        destinationVertex: Vertex | null
 *   }
 */
 
@@ -12,11 +14,13 @@ var Point = require('./point');
 
 module.exports = Edge;
 
-function Edge(direction, source, destination) {
+function Edge(direction, source, destination, sourceVertex, destinationVertex) {
     this.direction = direction || 'up';
     this.weight = 100;
     this.source = source || null;
     this.destination = destination || null;
+    this.sourceVertex = sourceVertex || null;
+    this.destinationVertex = destinationVertex || null;
 }
 
 Edge.prototype.getSource = function (board) {
