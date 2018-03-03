@@ -35,6 +35,20 @@ module.exports = function (methods) {
         // Create a new vertex representing that cell
         var vertex = new Vertex('empty', 'none', cellCoords);
 
+        // Apply initial board related weighting to vertices
+
+        // Is border edge?
+        if (vertex.coords.x == 0 || vertex.coords.x == req.body.width ||
+          vertex.coords.y == 0 || vertex.coords.y == req.body.height) {
+            vertex.weight += parseInt(eval(config.weightValues.border));
+        }
+
+        // Is border edge?
+        if (vertex.coords.x == 1 || vertex.coords.x == req.body.width-1 ||
+          vertex.coords.y == 1 || vertex.coords.y == req.body.height-1) {
+            vertex.weight += parseInt(eval(config.weightValues.border / 2));
+        }
+
         // Store the vertex back in the request body's board
         boardUtils.setBoardCell(req.body.board, cellCoords, vertex);
       }
@@ -68,6 +82,9 @@ module.exports = function (methods) {
           vertex.snake = 'enemy';
           if (index === 0) {
             vertex.state = 'head';
+            
+            // Apply weighting from all snake heads
+            boardUtils.weightEnemySnakeHeadVertices(req.body.board, vertex, req.body.you.health, req.body.you.length, snake.length);
           }
         } 
 
@@ -95,27 +112,20 @@ module.exports = function (methods) {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
 
-        // Apply initial weighting from board state to all edges
+        /*
+        var adjacentVertices = boardUtils.getAdjacentVertices(req.body.board, vertex.coords);
+        adjacentVertices.forEach((outerVertex) => {
+          //var connectingEdge = boardUtils.getConnectingEdge(outerVertex, vertex);
 
-        vertex.outEdges.forEach((edge) => {
-          // Is border edge?
-          if (edge.destination.x == 0 || edge.destination.x == req.body.width ||
-            edge.destination.y == 0 || edge.destination.y == req.body.height) {
-              edge.weight += parseInt(eval(config.weightValues.border));
-          }
+          // Eval first turn (for outer verticles)
+          if (outerVertex.snake == 'enemy')
 
-          // Is inner border edge?
-          if (edge.destination.x == 1 || edge.destination.x == req.body.width-1 ||
-            edge.destination.y == 1 || edge.destination.y == req.body.height-1) {
-              edge.weight += parseInt(eval(config.weightValues.border)) / 2;
-          }
-
-          // Eval first turn (this edge)
+        });
+        */
           
+        // Eval second turn (for outer vertices)
           
-          // Eval second turn (out edges of this edge)
-          
-        })
+        
 
         
 
