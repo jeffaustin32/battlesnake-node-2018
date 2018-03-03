@@ -1,5 +1,6 @@
 var boardUtils = require('../utilities/board');
 var Point = require('../classes/point');
+var config = require('../config.json');
 
 module.exports = function (req, res, next) {
     // Get the vertex for the head of our snake
@@ -19,7 +20,7 @@ function floodFill(req, vertex, depth) {
     vertex.visited = true;
 
     // If no children
-    if (vertex.outEdges.length === 0) {
+    if (vertex.outEdges.length === 0 || depth === config.boardValues.floodFillLimit) {
         // Reset visisted property so other paths can reach this vertex
         vertex.visited = false;
         // Return depth
