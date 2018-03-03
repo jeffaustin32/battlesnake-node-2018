@@ -11,6 +11,9 @@ module.exports = function (req, res, next) {
         // Flood fill from our head
         floodFill(req, vertex, 0);
         let maxSubtreeHeight = vertex.maxSubtreeHeight;
+        console.log(`Old weight: ${vertex.tempWeight}`);
+        vertex.tempWeight += parseInt(eval(config.weightValues.floodFill.pathLength));
+        console.log(`New weight: ${vertex.tempWeight}`);
         console.log(`Vertex coords: (${vertex.coords.x}, ${vertex.coords.y}), maxSubtreeHeight: ${vertex.maxSubtreeHeight}, adding: ${parseInt(eval(config.weightValues.floodFill.pathLength))} weight`);
     });
 
