@@ -69,7 +69,6 @@ module.exports = {
         adjacentVertex.outEdges.forEach(edge => {
             if (edge.destination.equals(vertex.coords)) {
                 connectingEdge = edge;
-                break;
             }
         });
 
