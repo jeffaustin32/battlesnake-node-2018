@@ -77,8 +77,8 @@ module.exports = function (methods) {
     });
 
     // Add all food to the board
-    req.body.food.forEach(food => {
-      var foodCoords = new Point(food[0], food[1]);
+    req.body.food.data.forEach(food => {
+      var foodCoords = new Point(food.x, food.y);
       var vertex = boardUtils.getBoardCell(req.body.board, foodCoords);
       vertex.state = 'food';
 
@@ -109,7 +109,7 @@ module.exports = function (methods) {
     });
 
     // TODO: ADD WEIGHTS
-    
+
     next();
   };
 }
