@@ -20,5 +20,46 @@
       "start": "Hideho!",
       "end": "Golly that isn't very nice. I sure would like to teach him lesson."
     }
+  },
+  "weightValues": {
+    "default": "100",
+    "border": "50",
+    "center": "25",
+    "turnWeights": {
+      "first": {
+        "win": "0 - hp",
+        "loss": "500"
+      },
+      "second": {
+        "win": "(0 - hp) / 10",
+        "loss": "50"
+      }
+    },
+    "safenessLevels": [
+      {
+        "healthScale": "75",
+        "threshold": "500"
+      },
+      {
+        "healthScale": "50",
+        "threshold": "400"
+      },
+      {
+        "healthScale": "25",
+        "threshold": "200"
+      },
+      {
+        "healthScale": "bl / 2",
+        "threshold": "50"
+      },
+      {
+        "healthScale": "0",
+        "threshold": "0"
+      }
+    ],
+    "floodFill": {
+      "pathLength": "1000 / pl",
+      "pathFood": "0 - (100 / hp)"
+    }
   }
 }
