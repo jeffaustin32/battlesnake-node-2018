@@ -104,7 +104,16 @@ module.exports = function (methods) {
               edge.weight += parseInt(eval(config.weightValues.border));
           }
 
-          // Is center edge?
+          // Is inner border edge?
+          if (edge.destination.x == 1 || edge.destination.x == req.body.width-1 ||
+            edge.destination.y == 1 || edge.destination.y == req.body.height-1) {
+              edge.weight += parseInt(eval(config.weightValues.border)) / 2;
+          }
+
+          // Eval first turn (this edge)
+          
+          
+          // Eval second turn (out edges of this edge)
           
         })
 
