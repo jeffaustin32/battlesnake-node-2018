@@ -10,6 +10,7 @@ module.exports = function (req, res, next) {
     adj.forEach(vertex => {
         // Flood fill from our head
         floodFill(req, vertex, 0);
+        let hp = req.body.you.health;
         let maxSubtreeHeight = vertex.maxSubtreeHeight;
         console.log(`Old weight: ${vertex.tempWeight}`);
         vertex.tempWeight += parseInt(eval(config.weightValues.floodFill.pathLength));
