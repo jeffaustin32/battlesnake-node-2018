@@ -61,6 +61,7 @@ module.exports = function (methods) {
             vertex.state = 'head';
             vertex.distance = 0;
             vertex.isSource = true;
+            req.body.source = vertex;
           }
         // Is enemy snake
         } else {
@@ -93,10 +94,6 @@ module.exports = function (methods) {
     req.body.board.forEach((col, colIndex) => {
       col.forEach((vertex, rowIndex) => {
         vertex.addEdges(req.body.board);
-
-        if (vertex.isSource) {
-          req.body.source = vertex;
-        }
 
         // Apply initial weighting from board state to all edges
 
