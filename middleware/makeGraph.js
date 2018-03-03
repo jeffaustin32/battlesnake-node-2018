@@ -120,12 +120,9 @@ module.exports = function (methods) {
           // Eval first turn (for outer verticles)
           if (outerVertex.snake == 'enemy')
 
-        });
-        */
           
-        // Eval second turn (for outer vertices)
-          
-        
+
+        })
 
         
 
